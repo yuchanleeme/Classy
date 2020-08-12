@@ -1,0 +1,23 @@
+{
+  "name": "opensource_project",
+  "version": "1.0.0",
+  "description": "OpenSource_project_chatServer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/injeChoi/OpenSource_Project.git"
+  },
+  "author": "In Je Choi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/injeChoi/OpenSource_Project/issues"
+  },
+  "homepage": "https://github.com/injeChoi/OpenSource_Project#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}
