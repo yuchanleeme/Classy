@@ -39,20 +39,20 @@ app.get('/', function(request, response) {
 })
 
 io.sockets.on('connection', function(socket) {
-
     /* 새로운 유저가 접속했을 경우 다른 소켓에게도 알려줌 */
+    // index.js로 부터 emit 받은 newUser 데이터를 활용
     socket.on('newUser', function(name) {
       console.log(name + ' 님이 접속하였습니다.')
   
-      /* 소켓에 이름 저장해두기 */
+      // 소켓에 이름 저장해두기, index.js에서 입력한 name 정보 저장
       socket.name = name
   
-      /* 모든 소켓에게 전송 */
+      /* 모든 소켓에게 전송, 화면에 출력시킴 */
       io.sockets.emit('update', {type: 'connect', name: 'SERVER', message: name + '님이 접속하였습니다.'})
     })
   
     /* 전송한 메시지 받기 */
-    socket.on('message', function(data) {
+    socket.on('message', function(data) { //DB에 사용자 정보와 메세지를 저장하고 싶다면 여기서 구현
       /* 받은 데이터에 누가 보냈는지 이름을 추가 */
       data.name = socket.name
       

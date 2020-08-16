@@ -10,7 +10,7 @@ socket.on('connect', function() {
     name = '익명'
   }
 
-  /* 서버에 새로운 유저가 왔다고 알림 */
+  /* 서버에 새로운 유저가 왔다고 알림, newUser 이벤트 발생 */
   socket.emit('newUser', name)
 })
 
@@ -57,6 +57,10 @@ function send() {
   msg.classList.add('me')
   msg.appendChild(node)
   chat.appendChild(msg)
+
+  // scroll 항상 제일 아래로 유지 
+  var objDiv = document.getElementById('chat'); 
+  objDiv.scrollTop = objDiv.scrollHeight;
 
   // 서버로 message 이벤트 전달 + 데이터와 함께
   socket.emit('message', {type: 'message', message: message})

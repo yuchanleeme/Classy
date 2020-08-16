@@ -13,6 +13,7 @@
     height: 90%;
     width: 100%;
     overflow-y: auto;
+    overflow: scroll; /* scroll을 제일 아래로 유지하기 위한 세팅 */
   }
   
   /* 접속 알림 */
