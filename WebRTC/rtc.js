@@ -1,7 +1,7 @@
 "use strict";
 
-let localVideo = document.getElementById("localVideo");
-let remoteVideo = document.getElementById("remoteVideo");
+let localVideo = document.getElementById('localVideo');
+let remoteVideo = document.getElementById('remoteVideo');
 let isInitiator = false;
 let isChannelReady = false;
 let isStarted = false;
