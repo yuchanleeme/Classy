@@ -17,13 +17,17 @@ connection.sdpConstraints.mandatory = {
     OfferToReceiveVideo: false
 };
 
-// connection.onstream = function (event) {
-//     document.body.appendChild(event.mediaElement);
-// };
+const section = document.querySelector("#section");
 
-// connection.offstream = function (event) {
-//     document.body.removeChild(event.mediaElement);
-// }
+connection.onstream = function (event) {
+    // document.body.appendChild(event.mediaElement);
+    section.appendChild(event.mediaElement);
+};
+
+connection.offstream = function (event) {
+    // document.body.removeChild(event.mediaElement);
+    section.removeChild(event.mediaElement);
+}
 
 var predefinedRoomId = prompt('Please enter room-id', 'xyzxyzxyz');
 

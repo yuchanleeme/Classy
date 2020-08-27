@@ -1,4 +1,40 @@
-video{
+:root {
+    --main-height: 700px;
+}
+
+#header {
+    background-color:lightgrey;
+    height:70px;
+}
+
+#nav {
+    background-color:#339999;
+    color:white;
+    width: 25%;
+    height: var(--main-height);
+    float:right;
+}
+
+#section {
+    width: 75%;
+    height: var(--main-height);
+    background-color: darkseagreen;
+    text-align:left;
+    float:right;
+}
+
+#footer {
+    background-color:#FFCC00;
+    height:100px;
+    clear:both;
+}
+
+#header, #nav, #section, #footer { text-align:center; }
+#header { line-height:70px; }
+#footer { line-height:100px; }
+#nav, #section { line-height: 500px; }
+
+video {
     width: 320px;
     height: 240px;
     border-radius: 10px;
