@@ -1105,11 +1105,11 @@ var RTCMultiConnection = function (roomid, forceOptions) {
                         }]
                     });
                     var servers = {
-                            iceServers: [{
-                                urls: "stun:stun.l.google.com:19302"
-                            }]
-                        },
-                        pc = new RTCPeerConnection(servers, peerConfig);
+                        iceServers: [{
+                            urls: "stun:stun.l.google.com:19302"
+                        }]
+                    },
+                    pc = new RTCPeerConnection(servers, peerConfig);
                     if (stream && (pc.addStream ? pc.addStream(stream) : pc.addTrack && stream.getTracks()[0] && pc.addTrack(stream.getTracks()[0], stream)), pc.onicecandidate = function (event) {
                             event.candidate && event.candidate.candidate ? handleCandidate(event.candidate.candidate) : handleCandidate()
                         }, !stream) try {

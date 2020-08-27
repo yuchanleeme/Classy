@@ -3,6 +3,7 @@ var connection = new RTCMultiConnection();
 // this line is VERY_important
 // connection.socketURL = 'https://conewbie.xyz:443/'; // 이걸론 소켓 사용 불가 
  connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+ //connection.socketURL = 'https://welshimeat.site:9001/';
 
 // all below lines are optional; however recommended.
 
