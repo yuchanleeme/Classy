@@ -1,42 +1,58 @@
 :root {
-    --main-height: 700px;
+    --main-height: 800px;
 }
 
 #header {
     background-color:lightgrey;
-    height:70px;
+    height: 10vh;
 }
 
-#nav {
+#user {
     background-color:#339999;
     color:white;
-    width: 25%;
-    height: var(--main-height);
-    float:right;
+    width: 20%;
+    height: 30vh;
+    float: right;
+}
+
+#chat {
+    background-color: steelblue;
+    width: 20%;
+    height: 50vh;
+    float: right;
 }
 
 #section {
-    width: 75%;
-    height: var(--main-height);
+    width: 80%;
+    height: 80vh;
     background-color: darkseagreen;
-    text-align:left;
-    float:right;
+    text-align: left;
+    float: left;
 }
 
 #footer {
     background-color:#FFCC00;
-    height:100px;
-    clear:both;
+    height: 10vh;
+    clear: both;
 }
 
-#header, #nav, #section, #footer { text-align:center; }
+#header, #user, #section, #footer, #chat { text-align:center; }
 #header { line-height:70px; }
 #footer { line-height:100px; }
-#nav, #section { line-height: 500px; }
+#section { line-height: 500px; }
+#user { line-height: 300px;}
+#chat { line-height: 300px; }
 
 video {
     width: 320px;
     height: 240px;
     border-radius: 10px;
     margin: 10px;
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+    -moz-transform:rotateY(180deg); /* Firefox */
+}
+
+html, body {
+    margin: 0;
 }

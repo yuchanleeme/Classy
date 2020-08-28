@@ -29,6 +29,6 @@ connection.offstream = function (event) {
     section.removeChild(event.mediaElement);
 }
 
-var predefinedRoomId = prompt('Please enter room-id', 'xyzxyzxyz');
+var predefinedRoomId = prompt('Please enter room-id', '확인 눌러');
 
 connection.openOrJoin(predefinedRoomId);
