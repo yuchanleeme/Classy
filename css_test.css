@@ -1,0 +1,76 @@
+:root {
+    --main-height: 800px;
+}
+
+#header {
+    background-color:lightgrey;
+    height: 10vh;
+}
+
+#user {
+    background-color:#339999;
+    color:white;
+    width: 20%;
+    height: 30vh;
+    float: right;
+}
+
+#chat {
+    background-color: steelblue;
+    width: 20%;
+    height: 50vh;
+    float: right;
+}
+
+#section {
+	width: 80%;
+    height: 80vh;
+    background-color: darkseagreen;
+    text-align: center;
+    float: left;
+    overflow: hidden;
+}
+
+#footer {
+    background-color:#FFCC00;
+    height: 10vh;
+    clear: both;
+}
+
+#header, #user, #section, #footer, #chat { text-align:center; }
+#header { line-height:70px; }
+#footer { line-height:100px; }
+/* #section { line-height: 500px; }  */ /* 이게 영상 간격 오류의 범인이었다.*/
+#user { line-height: 300px;}
+#chat { line-height: 300px; }
+
+html, body {
+    margin: 0;
+}
+
+.video-div {
+	border-radius: 5px;
+	border: 1px solid black;
+	margin: 0 5px;
+    width: 320px;
+    text-align: left;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.video-div video {
+    width: 320px;
+}
+
+.video-div h2 {
+	border-top: 5px solid #080808;
+    padding: 5px 10px;
+    margin: 0;
+    margin-top: -4px;
+    overflow: hidden;
+}
+
+#video-container {
+    text-align: center;
+}
+
