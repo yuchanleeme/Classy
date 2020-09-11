@@ -1,11 +1,12 @@
 var connection = new RTCMultiConnection();
 
 // this line is VERY_important
-// connection.socketURL = 'https://conewbie.xyz:443/'; // 이걸론 소켓 사용 불가 
- connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
- //connection.socketURL = 'https://welshimeat.site:9001/';
+connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 
-// all below lines are optional; however recommended.
+connection.extra = {
+    // divBGColor: prompt('Please enter DIV background color.') // 영역 배경 색깔 채우기
+    fullName: prompt('Please Enter Your Full Name')
+};
 
 connection.session = {
     audio: true,
@@ -13,22 +14,38 @@ connection.session = {
 };
 
 connection.sdpConstraints.mandatory = {
-    OfferToReceiveAudio: false,
-    OfferToReceiveVideo: false
+    OfferToReceiveAudio: true,
+    OfferToReceiveVideo: true
 };
 
-const section = document.querySelector("#section");
+var videosContainer = document.getElementById('section');
+connection.onstream = function(event) {
+	delete event.mediaElement.id; // make sure that below DIV has unique ID in the DOM
+	
+    var div = document.createElement('div');
+	div.id = event.streamid;
+    div.className = 'video-div';
+    div.appendChild(event.mediaElement); // appending VIDEO to DIV
 
-connection.onstream = function (event) {
-    // document.body.appendChild(event.mediaElement);
-    section.appendChild(event.mediaElement);
+    var h2 = document.createElement('h2');
+    // h2.innerHTML = event.extra.divBGColor;
+    h2.innerHTML = event.extra.fullName;
+    div.appendChild(h2);
+	
+	div.style.backgroundColor = event.extra.divBGColor;
+
+    videosContainer.appendChild(div);
 };
 
-connection.offstream = function (event) {
-    // document.body.removeChild(event.mediaElement);
-    section.removeChild(event.mediaElement);
-}
+connection.onstreamended = function(event) {
+	var div = document.getElementById(event.streamid);
+	if(div && div.parentNode) {
+		div.parentNode.removeChild( div ); // remove it from the DOM
+	}
+};
 
-var predefinedRoomId = prompt('Please enter room-id', '확인 눌러');
-
+var predefinedRoomId = prompt('Please enter room-code');
 connection.openOrJoin(predefinedRoomId);
+
+// consider the URL as UNIQUE-ROOM-ID
+// connection.openOrJoin(connection.channel);
