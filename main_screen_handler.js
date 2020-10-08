@@ -36,9 +36,13 @@ $(function() {
      * screenHandler를 통해 캡쳐 API를 호출합니다.
      */
     function startScreenShare() {
-      screenHandler.start((stream) => {
-        onLocalStream(stream);
-      });
+        connection.addStream({
+            screen: true,
+            oneway: true,
+            streamCallback: function(stream) {
+                console.log('Screen is successfully captured: ' + stream.getVideoTracks().length);
+            }
+        });
     }
   
     /**

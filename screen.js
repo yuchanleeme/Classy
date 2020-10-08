@@ -31,14 +31,16 @@ function errorMsg(msg, error) {
   }
 }
 
+// start button을 눌렀을 때 비디오를 받아오는데 성공하면 handleSuccess함수, 실패하면 handleError함수 
 const startButton = document.getElementById('startButton');
 startButton.addEventListener('click', () => {
   navigator.mediaDevices.getDisplayMedia({video: true})
       .then(handleSuccess, handleError);
 });
 
-if ((navigator.mediaDevices && 'getDisplayMedia' in navigator.mediaDevices)) {
-  startButton.disabled = false;
-} else {
+if ((navigator.mediaDevices && 'getDisplayMedia' in navigator.mediaDevices)) { //만약 getDisplayMedia를 가져오는데 성공하면
+  startButton.disabled = false;                                                //start button 활성화 
+} 
+else {
   errorMsg('getDisplayMedia is not supported');
 }
