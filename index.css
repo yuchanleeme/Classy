@@ -42,7 +42,7 @@
     background-color: darkseagreen;
     text-align: center;
     float: left;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 #footer {
@@ -62,9 +62,58 @@ html, body {
     margin: 0;
 }
 
-.video-div {
-	border-radius: 5px; /*비디오 태두리를 둥글게*/
-	border: 1px solid black; /*비디오 태두리 선*/
+/*.video-div {*/
+/*	border-radius: 5px; !*비디오 태두리를 둥글게*!*/
+/*	border: 1px solid black; !*비디오 태두리 선*!*/
+/*    margin: 10px; !*비디오 밖 상하좌우 여백*!*/
+/*    width: 320px;*/
+/*    text-align: left;*/
+/*    !* overflow: hidden; *!*/
+/*    float: left;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: space-between;*/
+/*}*/
+
+.totalTeacherView {
+    border-radius: 5px; /*비디오 태두리를 둥글게*/
+    border: 1px solid black; /*비디오 태두리 선*/
+    margin: 10px; /*비디오 밖 상하좌우 여백*/
+    width: 650px;
+    text-align: left;
+    /* overflow: hidden; */
+    float: left;
+}
+
+.teacherView {
+    border-radius: 5px; /*비디오 태두리를 둥글게*/
+    border: 1px solid black; /*비디오 태두리 선*/
+    margin: 10px; /*비디오 밖 상하좌우 여백*/
+    width: 642px;
+    text-align: left;
+    /* overflow: hidden; */
+    float: left;
+    display: flex;
+    /*flex-direction: column;*/
+    justify-content: space-between;
+}
+
+.teacherID {
+    border-radius: 5px; /*비디오 태두리를 둥글게*/
+    border: 1px solid black; /*비디오 태두리 선*/
+    margin: 10px; /*비디오 밖 상하좌우 여백*/
+    width: 320px;
+    text-align: center;
+    /* overflow: hidden; */
+    float: left;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: space-between;*/
+}
+
+.studentView {
+    border-radius: 5px; /*비디오 태두리를 둥글게*/
+    border: 1px solid black; /*비디오 태두리 선*/
     margin: 10px; /*비디오 밖 상하좌우 여백*/
     width: 320px;
     text-align: left;
@@ -75,15 +124,51 @@ html, body {
     justify-content: space-between;
 }
 
-.video-div video {
+/*.video-div video {*/
+/*    width: 320px;*/
+/*    float: left;*/
+/*}*/
+
+.teacherView video {
     width: 320px;
     float: left;
 }
 
-.video-div h2 {
+.studentView video {
+    width: 320px;
+    float: left;
+}
+
+/*.video-div h2 {*/
+/*    border-bottom-left-radius: 5px;*/
+/*    border-bottom-right-radius: 5px;*/
+/*	border-top: 5px solid #080808;*/
+/*    padding: 5px 10px;*/
+/*    margin: 0;*/
+/*    margin-top: -5px;*/
+/*    overflow: hidden;*/
+/*    background-color: white;*/
+/*    text-align: center;*/
+/*    width: 300px;*/
+/*}*/
+
+.teacherView h2 {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-	border-top: 5px solid #080808;
+    border-top: 5px solid #080808;
+    padding: 5px 10px;
+    margin: 0;
+    margin-top: -5px;
+    overflow: hidden;
+    background-color: white;
+    text-align: center;
+    width: 300px;
+}
+
+.studentView h2 {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top: 5px solid #080808;
     padding: 5px 10px;
     margin: 0;
     margin-top: -5px;

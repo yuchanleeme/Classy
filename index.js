@@ -58,18 +58,35 @@ connection.addStream({
 });
 
 function attachStream(event){
+
     if(!nameArr.includes(event.extra.fullName)){
         var div = document.createElement('div');
-        div.id = event.streamid;
-        div.className = 'video-div';
-        div.appendChild(event.mediaElement); // appending VIDEO to DIV
-        var h2 = document.createElement('h2');
-        h2.innerHTML = event.extra.fullName;
-        div.appendChild(h2);
 
+        div.id = event.streamid;
+
+        if (event.extra.fullName.includes('교사')) {
+            div.className = 'totalTeacherView';
+            var teacherDiv = document.createElement('div');
+            var teacherID_Div = document.createElement('div');
+            teacherDiv.className = 'teacherView';
+            teacherID_Div.className = 'teacherID';
+            teacherDiv.appendChild(event.mediaElement);
+            teacherID_Div.innerHTML = event.extra.fullName;
+            div.appendChild(teacherDiv);
+            div.appendChild(teacherID_Div);
+            videoDivArr.push(teacherDiv);
+            nameArr.push(event.extra.fullName);
+        }
+        else if (event.extra.fullName.includes('학생')) {
+            div.className = 'studentView';
+            div.appendChild(event.mediaElement); // appending VIDEO to DIV
+            var h2 = document.createElement('h2');
+            h2.innerHTML = event.extra.fullName;
+            div.appendChild(h2);
+            videoDivArr.push(div)
+            nameArr.push(event.extra.fullName);
+        }
         videosContainer.appendChild(div);
-        videoDivArr.push(div)
-        nameArr.push(event.extra.fullName);
     }
     else{
         var div = videoDivArr[nameArr.indexOf(event.extra.fullName)];
