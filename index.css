@@ -78,9 +78,6 @@ html, body {
 .video-div video {
     width: 320px;
     float: left;
-    transform: rotateY(180deg);
-    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
-    -moz-transform:rotateY(180deg); /* Firefox */
 }
 
 .video-div h2 {
