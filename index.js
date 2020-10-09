@@ -21,7 +21,7 @@ connection.sdpConstraints.mandatory = {
 };
 
 var videosContainer = document.getElementById('section');
-connection.onstream = function(event) {
+connection.onstream = function h(event) {
     delete event.mediaElement.id; // make sure that below DIV has unique ID in the DOM
     // const screenConstraints = {
     //     video: {
@@ -33,6 +33,7 @@ connection.onstream = function(event) {
 	
     var div = document.createElement('div');
     div.id = event.streamid;
+    var vDivID = event.streamid;
     div.className = 'video-div';
     div.appendChild(event.mediaElement); // appending VIDEO to DIV
     // var screen = navigator.mediaDevices.getDisplayMedia(screenConstraints);
@@ -55,6 +56,14 @@ connection.onstreamended = function(event) {
 		div.parentNode.removeChild( div ); // remove it from the DOM
 	}
 };
+
+connection.addStream({
+    screen: true,
+    oneway: true,
+    streamCallback: function(stream) {
+        console.log('Screen is successfully captured: ' + stream.getVideoTracks().length);
+    }
+});
 
 // consider the URL as UNIQUE-ROOM-ID
 // connection.openOrJoin(connection.channel);

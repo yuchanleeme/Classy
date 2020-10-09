@@ -9,7 +9,6 @@ $(function() {
     console.log('Loaded Main');
   
     const screenHandler = new ScreenHandler();
-  
     /**
      * 비디오 엘리먼트에 재생을 위해 stream 바인딩
      * @param data
@@ -30,6 +29,7 @@ $(function() {
         el: document.querySelector('#local-video'),
         stream: stream,
       });
+      console.log();
     }
   
     /**
