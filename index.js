@@ -1,5 +1,8 @@
+var nameArr = new Array(),
+    videoDivArr = new Array();
+
 var connection = new RTCMultiConnection();
-//test
+
 // this line is VERY_important
 connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 
@@ -11,42 +14,36 @@ connection.extra = {
 };
 
 connection.session = {
-    audio: true,
+    audio: false,
     video: true
 };
 
 connection.sdpConstraints.mandatory = {
-    OfferToReceiveAudio: true,
+    OfferToReceiveAudio: false,
     OfferToReceiveVideo: true
 };
 
 var videosContainer = document.getElementById('section');
-connection.onstream = function h(event) {
+connection.onstream = function(event) {
     delete event.mediaElement.id; // make sure that below DIV has unique ID in the DOM
-    // const screenConstraints = {
-    //     video: {
-    //         width: 320, // 최대 너비
-    //         height: 240, // 최대 높이
-    //         frameRate: 10, // 최대 프레임
-    //     },
-    // };
-	
-    var div = document.createElement('div');
-    div.id = event.streamid;
-    var vDivID = event.streamid;
-    div.className = 'video-div';
-    div.appendChild(event.mediaElement); // appending VIDEO to DIV
-    // var screen = navigator.mediaDevices.getDisplayMedia(screenConstraints);
-    // div.appendChild(screen);
-    var h2 = document.createElement('h2');
-    h2.innerHTML = event.extra.fullName;
-    div.appendChild(h2);
 
+    if(!nameArr.includes(event.extra.fullName)){
+        var div = document.createElement('div');
+        div.id = event.streamid;
+        div.className = 'video-div';
+        div.appendChild(event.mediaElement); // appending VIDEO to DIV
+        var h2 = document.createElement('h2');
+        h2.innerHTML = event.extra.fullName;
+        div.appendChild(h2);
 
-
-    videosContainer.appendChild(div);
-
-
+        videosContainer.appendChild(div);
+        videoDivArr.push(div)
+        nameArr.push(event.extra.fullName);
+    }
+    else{
+        var div = videoDivArr[nameArr.indexOf(event.extra.fullName)];
+        div.insertBefore(event.mediaElement, div.firstChild);
+    }
 
 };
 
