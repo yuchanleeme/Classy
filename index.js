@@ -27,6 +27,37 @@ var videosContainer = document.getElementById('section');
 connection.onstream = function(event) {
     delete event.mediaElement.id; // make sure that below DIV has unique ID in the DOM
 
+    // 교사일 때
+    if(connection.extra.fullName.includes('교사')){
+        attachStream(event);
+    }
+    // 학생일 때
+    else if(connection.extra.fullName.includes('학생')){
+        if(event.extra.fullName.includes('학생')){
+            return;
+        }
+        else if (event.extra.fullName.includes('교사')){
+            attachStream(event);
+        }
+    }
+};
+
+connection.onstreamended = function(event) {
+	var div = document.getElementById(event.streamid);
+	if(div && div.parentNode) {
+		div.parentNode.removeChild( div ); // remove it from the DOM
+	}
+};
+
+connection.addStream({
+    screen: true,
+    oneway: true,
+    streamCallback: function(stream) {
+        console.log('Screen is successfully captured: ' + stream.getVideoTracks().length);
+    }
+});
+
+function attachStream(event){
     if(!nameArr.includes(event.extra.fullName)){
         var div = document.createElement('div');
         div.id = event.streamid;
@@ -44,23 +75,7 @@ connection.onstream = function(event) {
         var div = videoDivArr[nameArr.indexOf(event.extra.fullName)];
         div.insertBefore(event.mediaElement, div.firstChild);
     }
-
-};
-
-connection.onstreamended = function(event) {
-	var div = document.getElementById(event.streamid);
-	if(div && div.parentNode) {
-		div.parentNode.removeChild( div ); // remove it from the DOM
-	}
-};
-
-connection.addStream({
-    screen: true,
-    oneway: true,
-    streamCallback: function(stream) {
-        console.log('Screen is successfully captured: ' + stream.getVideoTracks().length);
-    }
-});
+}
 
 // consider the URL as UNIQUE-ROOM-ID
 // connection.openOrJoin(connection.channel);
