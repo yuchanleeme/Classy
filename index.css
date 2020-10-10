@@ -36,7 +36,7 @@
     float: right;
 }
 
-#section {
+#section_1 {
 	width: 80%;
     height: 80vh;
     background-color: darkseagreen;
@@ -88,8 +88,9 @@ html, body {
 .teacherView {
     border-radius: 5px; /*비디오 태두리를 둥글게*/
     border: 1px solid black; /*비디오 태두리 선*/
-    margin: 10px; /*비디오 밖 상하좌우 여백*/
-    width: 642px;
+    background-color: black;
+    margin: 0px; /*비디오 밖 상하좌우 여백*/
+    width: 650px;
     text-align: left;
     /* overflow: hidden; */
     float: left;
@@ -131,6 +132,8 @@ html, body {
 
 .teacherView video {
     width: 320px;
+    height: 240px;
+    margin: 0px;
     float: left;
 }
 

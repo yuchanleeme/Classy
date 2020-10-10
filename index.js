@@ -23,7 +23,7 @@ connection.sdpConstraints.mandatory = {
     OfferToReceiveVideo: true
 };
 
-var videosContainer = document.getElementById('section');
+var videosContainer = document.getElementById('section_1');
 connection.onstream = function(event) {
     delete event.mediaElement.id; // make sure that below DIV has unique ID in the DOM
 
@@ -58,6 +58,13 @@ connection.addStream({
 });
 
 function attachStream(event){
+    const constraints = {
+        video: {
+            width: 320, // 최대 너비
+            //height: 1080, // 최대 높이
+            frameRate: 10, // 최대 프레임
+        },
+    }
 
     if(!nameArr.includes(event.extra.fullName)){
         var div = document.createElement('div');
