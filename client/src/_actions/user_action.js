@@ -3,7 +3,7 @@ import {
   LOGIN_USER,
   REGISTER_USER,
   AUTH_USER,
-  MAKETEST
+  MAKE_TEST
 } from './type'
 
 export function loginUser(dataToSubmit){
@@ -43,7 +43,7 @@ export function MakeTest(dataToSubmit){
     .then(response => response.data)
 
   return{
-    type: MAKETEST,
+    type: MAKE_TEST,
     payload: request
   }
 }

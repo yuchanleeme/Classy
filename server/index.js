@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+// MongoDB와 연동
 const mongoose = require('mongoose')
 mongoose.connect(config.mongoURI,{
     useNewUrlParser : true, useUnifiedTopology : true, useCreateIndex: true, useFindAndModify: false
@@ -29,7 +30,10 @@ app.get('/', (req, res) => res.send('Hello World! here'))
 app.get('/api/hello', (req, res)=>{
   res.send("HI")
 })
+
 //****************
+
+// 업로드 이미지
 app.use("/uploads", express.static("uploads"));
 var storage = multer.diskStorage({
   destination: './uploads',
