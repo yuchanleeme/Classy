@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const config = require('./config/key');
 const {auth} = require('./middleware/auth')
 const {User} = require("./models/User");
+const {QuestionList} = require("./models/QuestionList");
 const multer = require('multer')
 const path = require('path')
 
@@ -63,6 +64,20 @@ app.post('/api/users/register', (req, res) => {
     })
   })
 
+})
+
+// quiz 만들기
+app.post('/api/test/maketest', (req, res) => {
+
+  const Question = new QuestionList(req.body)
+
+  Question.save((err, quizInfo) => {
+
+    if(err) return res.json({success: false, err})
+    return res.status(200).json({
+      success: true
+    })
+  })
 })
 
 // 로그인 라우터

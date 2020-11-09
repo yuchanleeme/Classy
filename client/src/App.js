@@ -14,7 +14,8 @@ import NavBar from './components/views/NavBar/NavBar'
 import Footer from './components/views/Footer/Footer'
 import Auth from './hoc/auth'
 
-import TestPage from './components/views/TestPage/test1'
+import TestPage from './components/views/TestPage/Test'
+import MakeTestPage from './components/views/TestPage/MakeTestPage'
 
 function App() {
   return (
@@ -27,11 +28,7 @@ function App() {
         <Route exact path="/" component={Auth(LandingPage, null)} />
         <Route exact path="/login" component={Auth(LoginPage, false)} />
         <Route exact path="/register" component={Auth(RegisterPage, false)} />
-        < Route exact path = "/test"
-        component = {
-          Auth(TestPage, false)
-        }
-        />
+        <Route exact path = "/test" component = {Auth(TestPage, false)}/>
       </Switch>
     </div>
     <Footer/>

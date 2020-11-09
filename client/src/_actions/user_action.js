@@ -2,7 +2,8 @@ import Axios from 'axios';
 import {
   LOGIN_USER,
   REGISTER_USER,
-  AUTH_USER
+  AUTH_USER,
+  MAKETEST
 } from './type'
 
 export function loginUser(dataToSubmit){
@@ -32,6 +33,17 @@ export function auth(){
     
   return{
     type: AUTH_USER,
+    payload: request
+  }
+}
+
+export function MakeTest(dataToSubmit){
+
+  const request = Axios.post('/api/test/maketest', dataToSubmit)
+    .then(response => response.data)
+
+  return{
+    type: MAKETEST,
     payload: request
   }
 }
