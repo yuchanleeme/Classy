@@ -2,13 +2,14 @@ var nameArr = new Array(),
     videoDivArr = new Array();
 
 /*
+소켓 연결 + 영상 통화, 메시지 전송 등 기능 정의 및 구현
 RTCMultiConnection 함수 안에서 소켓 연결이 이뤄지며
 소켓 연결 후 영상 통화, 메시지 전송 등과 관련된 모든 함수가 정의 및 구현 되어있다.
 */
 var connection = new RTCMultiConnection();
 
 /*
-free signaling server 사용을 위한 코드이다.
+free signaling server 사용
 signaling server가 없다면 상대방을 알 수 없으므로 모든 communication이 불가능하다.
  */
 connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
@@ -44,22 +45,16 @@ connection.sdpConstraints.mandatory = {
 };
 
 /*
-index.html의 teacherSection 영역에 비디오를 추가하기 위한 코드
- */
-var videosContainer = document.getElementById('teacherSection');
-
-/*
-시험 방에 접속하여 on stream 상황일 때,
-교사는 자신의 웹캠, 스크린을 모든 학생들에게 공유하게 되고
+선택적 화면 및 웹캠 공유 기능
+시험 방에 접속하여 on stream 상황일 때, 감독관은 자신의 웹캠, 스크린을 모든 학생들에게 공유하게 되고
 모든 학생들의 웹캠, 스크린을 공유 받는다.
-학생은 자산의 웹캠과 스크린을 교사에게만 공유하고
-다른 학생들에게는 공유하지 않는다.
+학생은 자산의 웹캠과 스크린을 감독관에게만 공유하고 다른 학생들에게는 공유하지 않는다.
  */
 connection.onstream = function(event) {
     delete event.mediaElement.id; // make sure that below DIV has unique ID in the DOM
 
-    // 교사일 때
-    if(connection.extra.fullName.includes('교사')){
+    // 감독관일 때
+    if(connection.extra.fullName.includes('감독관')){
         attachStream(event);
     }
     // 학생일 때
@@ -67,15 +62,15 @@ connection.onstream = function(event) {
         if(event.extra.fullName.includes('학생')){
             return;
         }
-        else if (event.extra.fullName.includes('교사')){
+        else if (event.extra.fullName.includes('감독관')){
             attachStream(event);
         }
     }
 };
 
 /*
-브라우저를 종료하게 된다면
-DOM에서 자신의 데이터들을 제거한다.
+이벤트 제거 기능
+브라우저를 종료하게 된다면 DOM에서 자신의 데이터들을 제거한다.
  */
 connection.onstreamended = function(event) {
 	var div = document.getElementById(event.streamid);
@@ -91,6 +86,11 @@ connection.addStream({
         console.log('Screen is successfully captured: ' + stream.getVideoTracks().length);
     }
 });
+
+/*
+index.html의 teacherSection 영역에 비디오를 추가하기 위한 코드
+ */
+var videosContainer = document.getElementById('teacherSection');
 
 function attachStream(event){
     const constraints = {
