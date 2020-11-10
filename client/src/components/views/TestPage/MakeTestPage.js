@@ -46,7 +46,7 @@ function RegisterPage(props) {
     event.preventDefault();
     
     if(Password !== ConfirmPassword){
-      return alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.')
+      return alert('비밀번호와 비밀번호 확인은 같아야 합니다.')
     }
     let body = {
       email: Email,
@@ -73,21 +73,9 @@ function RegisterPage(props) {
       <form style={{display: 'flex', flexDirection: 'column'}}
         onSubmit = {onSubmitHandler}>
 
-        <label>Email</label>
-        <input type="email" value={Email} onChange={onEmailHandler} />
-
         <label>Name</label>
         <input type="text" value={Name} onChange={onNameHandler} />
 
-        <label>Password</label>
-        <input type="password" value={Password} onChange={onPasswordHandler} />
-
-        <label>Confirm Password</label>
-        <input type="password" value={ConfirmPassword} onChange={onConfirmPasswordHandler} />
-        
-        <label>User Image</label>
-        <input type="file" accept='image/jpg, image/png, image/jpeg' value={UserImage} onChange={onUserImageHandler} /> 
-        <br />
         <button>
           Register
         </button>

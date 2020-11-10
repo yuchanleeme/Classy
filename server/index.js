@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const config = require('./config/key');
 const {auth} = require('./middleware/auth')
 const {User} = require("./models/User");
+const {QuestionList} = require("./models/QuestionList");
 const multer = require('multer')
 const path = require('path')
 
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+// MongoDB와 연동
 const mongoose = require('mongoose')
 mongoose.connect(config.mongoURI,{
     useNewUrlParser : true, useUnifiedTopology : true, useCreateIndex: true, useFindAndModify: false
@@ -28,7 +30,10 @@ app.get('/', (req, res) => res.send('Hello World! here'))
 app.get('/api/hello', (req, res)=>{
   res.send("HI")
 })
+
 //****************
+
+// 업로드 이미지
 app.use("/uploads", express.static("uploads"));
 var storage = multer.diskStorage({
   destination: './uploads',
@@ -63,6 +68,20 @@ app.post('/api/users/register', (req, res) => {
     })
   })
 
+})
+
+// quiz 만들기
+app.post('/api/test/maketest', (req, res) => {
+
+  const Question = new QuestionList(req.body)
+
+  Question.save((err, quizInfo) => {
+
+    if(err) return res.json({success: false, err})
+    return res.status(200).json({
+      success: true
+    })
+  })
 })
 
 // 로그인 라우터
