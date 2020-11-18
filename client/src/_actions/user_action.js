@@ -3,6 +3,7 @@ import {
   LOGIN_USER,
   REGISTER_USER,
   AUTH_USER,
+  UPLOAD_QUESTION,
   MAKE_TEST
 } from './type'
 
@@ -33,6 +34,17 @@ export function auth(){
     
   return{
     type: AUTH_USER,
+    payload: request
+  }
+}
+
+export function UploadQuestion(dataToSubmit){
+
+  const request = Axios.post('/api/test/UploadQuestion', dataToSubmit)
+    .then(response => response.data)
+
+  return{
+    type: UPLOAD_QUESTION,
     payload: request
   }
 }

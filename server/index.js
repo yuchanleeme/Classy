@@ -6,6 +6,7 @@ const config = require('./config/key');
 const {auth} = require('./middleware/auth')
 const {User} = require("./models/User");
 const {QuestionList} = require("./models/QuestionList");
+const {ExamList} = require("./models/ExamList");
 const multer = require('multer')
 const path = require('path')
 
@@ -61,7 +62,6 @@ app.post('/api/users/register', (req, res) => {
   const user = new User(req.body)
 
   user.save((err, userInfo) => {
-
     if(err) return res.json({success: false, err})
     return res.status(200).json({
       success: true
@@ -70,19 +70,32 @@ app.post('/api/users/register', (req, res) => {
 
 })
 
-// quiz 만들기
+// question upload 하기
+app.post('/api/test/UploadQuestion', (req, res) => {
+  const Question = new QuestionList(req.body)
+  Question.save((err, QuestionInfo) =>{
+    if(err) return res.json({success: false, err})
+    return res.status(200).json({
+      success: true
+    })
+  })
+ 
+})
+
+// Exam 만들기
 app.post('/api/test/maketest', (req, res) => {
 
-  const Question = new QuestionList(req.body)
+  const Exam = new ExamList(req.body)
 
-  Question.save((err, quizInfo) => {
-
+  Exam.save((err, ExamInfo) => {
     if(err) return res.json({success: false, err})
     return res.status(200).json({
       success: true
     })
   })
 })
+
+
 
 // 로그인 라우터
 app.post('/api/users/login', (req, res) => {
