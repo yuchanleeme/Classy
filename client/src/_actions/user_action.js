@@ -1,10 +1,12 @@
 import Axios from 'axios';
+// import {response} from 'express';
 import {
   LOGIN_USER,
   REGISTER_USER,
   AUTH_USER,
   UPLOAD_QUESTION,
-  MAKE_TEST
+  MAKE_TEST,
+  FETCH_EXAM
 } from './type'
 
 export function loginUser(dataToSubmit){
@@ -56,6 +58,17 @@ export function MakeTest(dataToSubmit){
 
   return{
     type: MAKE_TEST,
+    payload: request
+  }
+}
+
+export function FetchExam(dataToSubmit){
+ 
+  const request = Axios.post('/api/room/fetchexam', dataToSubmit)
+    .then(response => response.data)
+  console.log(request)
+  return{
+    type: FETCH_EXAM,
     payload: request
   }
 }

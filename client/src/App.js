@@ -15,6 +15,7 @@ import Footer from './components/views/Footer/Footer'
 import Auth from './hoc/auth'
 
 import MakeTestPage from './components/views/TestPage/MakeTestPage'
+import JoinRoomPage from './components/views/RoomPage/JoinRoomPage'
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route exact path="/login" component={Auth(LoginPage, false)} />
         <Route exact path="/register" component={Auth(RegisterPage, false)} />
         <Route exact path = "/maketest" component = {Auth(MakeTestPage, false)}/>
+        <Route exact path = "/joinroom" component = {Auth(JoinRoomPage, false)}/>
       </Switch>
     </div>
     <Footer/>

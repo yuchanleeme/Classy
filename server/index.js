@@ -95,7 +95,24 @@ app.post('/api/test/maketest', (req, res) => {
   })
 })
 
+// ques
+app.post('/api/room/fetchexam', (req, res) => {
 
+  ExamList.findOne({ Exam_id: req.body.Exam_id }, (err, exam) => {
+
+    if(!exam){
+      return res.json({
+        fetchSuccess: false,
+        message: `${req.body.Exam_id} 에 입장할 수 없습니다.`
+      })
+    }
+    else 
+      return res.status(200).json({
+      fetchSuccess : true,
+      QuestionIdx : exam.Questions
+    })
+  })
+})
 
 // 로그인 라우터
 app.post('/api/users/login', (req, res) => {
