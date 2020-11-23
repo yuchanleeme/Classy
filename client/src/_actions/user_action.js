@@ -6,7 +6,8 @@ import {
   AUTH_USER,
   UPLOAD_QUESTION,
   MAKE_TEST,
-  FETCH_EXAM
+  FETCH_EXAM,
+  FETCH_QUESTIONS
 } from './type'
 
 export function loginUser(dataToSubmit){
@@ -69,6 +70,17 @@ export function FetchExam(dataToSubmit){
   console.log(request)
   return{
     type: FETCH_EXAM,
+    payload: request
+  }
+}
+
+export function FetchQuestions(dataToSubmit){
+ 
+  const request = Axios.post('/api/room/fetchquestions', dataToSubmit)
+    .then(response => response.data)
+  console.log(request)
+  return{
+    type: FETCH_QUESTIONS,
     payload: request
   }
 }

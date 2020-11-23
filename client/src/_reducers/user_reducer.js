@@ -2,7 +2,8 @@ import{
   LOGIN_USER,
   REGISTER_USER,
   AUTH_USER,
-  FETCH_EXAM
+  FETCH_EXAM,
+  FETCH_QUESTIONS
 } from '../_actions/type';
 
 export default function(state = {}, action){
@@ -21,6 +22,10 @@ export default function(state = {}, action){
       break;
 
     case FETCH_EXAM:
+        return{ ...state, fetchSuccess: action.payload}
+      break;
+    
+    case FETCH_QUESTIONS:
         return{ ...state, fetchSuccess: action.payload}
       break;
       
