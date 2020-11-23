@@ -3,11 +3,14 @@ import { useDispatch } from 'react-redux'
 import { registerUser } from '../../../_actions/user_action'
 import { withRouter } from 'react-router-dom'
 import Axios from 'axios';
+import { Form, Input, Button, Upload, Layout } from 'antd';
+import { EyeInvisibleOutlined, EyeTwoTone, UploadOutlined } from '@ant-design/icons';
+import { FormProvider } from 'antd/lib/form/context';
 
 function RegisterPage(props) {
   
   const dispatch = useDispatch();
-
+  const {Content} = Layout;
   const [Email, setEmail] = useState("")
   const [Name, setName] = useState("")
   const [Password, setPassword] = useState("")
@@ -27,10 +30,9 @@ function RegisterPage(props) {
   const onConfirmPasswordHandler = (event) =>{
     setConfirmPassword(event.currentTarget.value)
   }
-
+  
+  
   const onUserImageHandler = (event) => {
-    event.preventDefault();
-
     const formData = new FormData();
     formData.append('profile_img', event.target.files[0]);
     Axios.post('/api/users/upload', formData,{
@@ -44,7 +46,6 @@ function RegisterPage(props) {
   const onSubmitHandler = (event) =>{
     // 계속 새로고침 방지
     event.preventDefault();
-    
     if(Password !== ConfirmPassword){
       return alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.')
     }
@@ -54,6 +55,7 @@ function RegisterPage(props) {
       password: Password,
       image: DBimage
     }
+    console.log(body)
 
     dispatch(registerUser(body))
     .then(response => {
@@ -65,33 +67,106 @@ function RegisterPage(props) {
       })
   }
 
+  const formItemLayout = {
+    labelCol: {
+      xs: { span: 12 },
+      sm: { span: 10 },
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 5 },
+    },
+  };
+
+  const tailLayout = {
+  wrapperCol: {
+    offset: 12,
+    span: 24,
+    },
+  };
+
   return (
-    <div style = {{
-      display: 'flex', justifyContent: 'center', alignItems: 'center', width:'100%', height: '100vh'
-    }}>
+      <div style = {{
+        display: 'flex', justifyContent: 'center', alignItems: 'center', width:'100%', height: '100vh'
+      }}>
+    <Content>
+      <Form {...formItemLayout}>
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[
+            {
+              type: 'email',
+              message: 'The input is not valid E-mail!',
+            },
+            {
+              required: true,
+              message: 'Please input your E-mail!',
+            },
+          ]}
+        >
+          <Input placeholder="Input e-mail" value={Email} onChange={onEmailHandler}/>
+        </Form.Item>
 
-      <form style={{display: 'flex', flexDirection: 'column'}}
-        onSubmit = {onSubmitHandler}>
+        <Form.Item
+          label="Name"
+          name="name"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your Name!',
+            },
+          ]}
+        >
+          <Input placeholder="Input your Name" value={Name} onChange={onNameHandler}/>
+        </Form.Item>
 
-        <label>Email</label>
-        <input type="email" value={Email} onChange={onEmailHandler} />
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your Password!',
+            },
+          ]}
+        >
+          <Input.Password
+            placeholder="input password"
+            iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+            value={Password} onChange={onPasswordHandler}
+          />
+        </Form.Item>
 
-        <label>Name</label>
-        <input type="text" value={Name} onChange={onNameHandler} />
-
-        <label>Password</label>
-        <input type="password" value={Password} onChange={onPasswordHandler} />
-
-        <label>Confirm Password</label>
-        <input type="password" value={ConfirmPassword} onChange={onConfirmPasswordHandler} />
-        
-        <label>User Image</label>
-        <input type="file" accept='image/jpg, image/png, image/jpeg' value={UserImage} onChange={onUserImageHandler} /> 
-        <br />
-        <button>
-          Register
-        </button>
-      </form>
+        <Form.Item
+          label="ConfirmPassword"
+          name="confirmpassword"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your Confirm Password!',
+            },
+          ]}
+        >
+          <Input.Password
+            placeholder="input Confirm Password"
+            iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+            value={ConfirmPassword} onChange={onConfirmPasswordHandler}
+          />
+        </Form.Item>
+        <Form.Item 
+          label="Upload Image"
+          name="Upload Image"
+        >
+          <Input type="file" accept='image/jpg, image/png, image/jpeg' value={UserImage} onChange={onUserImageHandler} /> 
+        </Form.Item>
+        <Form.Item {...tailLayout}>
+          <Button type="primary" htmlType="submit" onClick={onSubmitHandler}>
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    </Content>
     </div>
   )
 }
