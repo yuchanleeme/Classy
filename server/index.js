@@ -114,6 +114,25 @@ app.post('/api/room/fetchexam', (req, res) => {
   })
 })
 
+// ques
+app.post('/api/room/fetchquestions', (req, res) => {
+  
+  console.log(req.body.Question_id)
+  QuestionList.findOne({ Question_id: req.body.Question_id }, (err, questions) => {
+    if(!questions){
+      return res.json({
+        fetchSuccess: false,
+        // message: `${req.Question_id}를 가져올 수 없습니다.`
+      })
+    }
+    else 
+      return res.status(200).json({
+      fetchSuccess : true,
+      QuestionInfo : questions
+    })
+  })
+})
+
 // 로그인 라우터
 app.post('/api/users/login', (req, res) => {
 
