@@ -6,6 +6,11 @@ const ExamListSchema = mongoose.Schema({
         maxlength: 10,
         unique : 1
     },
+    Exam_code: {
+        type: Number,
+        maxlength: 7,
+        unique : 1
+    },
     Questions: {
         type: Array,
         items:{

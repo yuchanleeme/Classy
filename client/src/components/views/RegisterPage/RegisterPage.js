@@ -55,7 +55,6 @@ function RegisterPage(props) {
       password: Password,
       image: DBimage
     }
-    console.log(body)
 
     dispatch(registerUser(body))
     .then(response => {
@@ -80,7 +79,7 @@ function RegisterPage(props) {
 
   const tailLayout = {
   wrapperCol: {
-    offset: 12,
+    offset:10,
     span: 24,
     },
   };

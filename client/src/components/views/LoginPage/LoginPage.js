@@ -2,12 +2,15 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { loginUser } from '../../../_actions/user_action'
 import { withRouter } from 'react-router-dom'
+import { Form, Input, Button, Layout  } from 'antd';
+import { EyeInvisibleOutlined, EyeTwoTone,  } from '@ant-design/icons';
 function LoginPage(props) {
 
   const dispatch = useDispatch();
 
   const [Email, setEmail] = useState("")
   const [Password, setPassword] = useState("")
+  const {Content} = Layout;
 
   // 이메일 패스워드 타이핑 하게 해줌
   const onEmailHandler = (event) =>{
@@ -38,12 +41,72 @@ function LoginPage(props) {
 
   }
 
+  const formItemLayout = {
+    labelCol: {
+      xs: { span: 12 },
+      sm: { span: 10 },
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 5 },
+    },
+  };
+
+  const tailLayout = {
+  wrapperCol: {
+    offset: 10,
+    span: 24,
+    },
+  };
+
   return (
     <div style = {{
       display: 'flex', justifyContent: 'center', alignItems: 'center', width:'100%', height: '100vh'
     }}>
+    <Content>
+      <Form {...formItemLayout}>
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[
+            {
+              type: 'email',
+              message: 'The input is not valid E-mail!',
+            },
+            {
+              required: true,
+              message: 'Please input your E-mail!',
+            },
+          ]}
+        >
+          <Input placeholder="Input e-mail" value={Email} onChange={onEmailHandler}/>
+        </Form.Item>
 
-      <form style={{display: 'flex', flexDirection: 'column'}}
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your Password!',
+            },
+          ]}
+        >
+          <Input.Password
+            placeholder="input password"
+            iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+            value={Password} onChange={onPasswordHandler}
+          />
+        </Form.Item>
+        
+        <Form.Item {...tailLayout}>
+          <Button type="primary" htmlType="submit" onClick={onSubmitHandler}>
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    </Content>
+     {/* <form style={{display: 'flex', flexDirection: 'column'}}
         onSubmit = {onSubmitHandler}
       >
         <label>Email</label>
@@ -55,7 +118,7 @@ function LoginPage(props) {
         <button>
           Login
         </button>
-      </form>
+      </form> */}
     </div>
     
   )

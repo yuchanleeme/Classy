@@ -7,7 +7,8 @@ import {
   UPLOAD_QUESTION,
   MAKE_TEST,
   FETCH_EXAM,
-  FETCH_QUESTIONS
+  FETCH_QUESTIONS,
+  // FETCH_USER_ROLE
 } from './type'
 
 export function loginUser(dataToSubmit){
@@ -78,9 +79,19 @@ export function FetchQuestions(dataToSubmit){
  
   const request = Axios.post('/api/room/fetchquestions', dataToSubmit)
     .then(response => response.data)
-  console.log(request)
   return{
     type: FETCH_QUESTIONS,
     payload: request
   }
 }
+
+// export function FetchUserRole(dataToSubmit){
+ 
+//   const request = Axios.post('/api/users/fetchuserrole', dataToSubmit)
+//     .then(response => response.data)
+//   console.log(request)
+//   return{
+//     type: FETCH_USER_ROLE,
+//     payload: request
+//   }
+// }

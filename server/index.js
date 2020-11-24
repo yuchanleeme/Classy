@@ -109,7 +109,8 @@ app.post('/api/room/fetchexam', (req, res) => {
     else 
       return res.status(200).json({
       fetchSuccess : true,
-      QuestionIdx : exam.Questions
+      QuestionIdx : exam.Questions,
+      Exam_code : exam.Exam_code
     })
   })
 })
@@ -117,7 +118,6 @@ app.post('/api/room/fetchexam', (req, res) => {
 // ques
 app.post('/api/room/fetchquestions', (req, res) => {
   
-  console.log(req.body.Question_id)
   QuestionList.findOne({ Question_id: req.body.Question_id }, (err, questions) => {
     if(!questions){
       return res.json({
@@ -187,5 +187,5 @@ app.get('/api/users/logout', auth, (req, res) => {
 })
 
 const port = 5000
-// app.listen(port, () => console.log(`Example app listening on port ${port}!`))
-app.listen(process.env.PORT || port)
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+// app.listen(process.env.PORT || port)

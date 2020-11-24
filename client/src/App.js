@@ -20,7 +20,7 @@ import JoinRoomPage from './components/views/RoomPage/JoinRoomPage'
 function App() {
   return (
    <Suspense fallback = {(<div> Loading... </div>)}>
-    <Router>
+    <Router >
       <NavBar/>
       <div style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
       <Switch>
@@ -28,8 +28,8 @@ function App() {
         <Route exact path="/" component={Auth(LandingPage, null)} />
         <Route exact path="/login" component={Auth(LoginPage, false)} />
         <Route exact path="/register" component={Auth(RegisterPage, false)} />
-        <Route exact path = "/maketest" component = {Auth(MakeTestPage, false)}/>
-        <Route exact path = "/joinroom" component = {Auth(JoinRoomPage, false)}/>
+        <Route exact path = "/maketest" component = {Auth(MakeTestPage, true)}/>
+        <Route exact path = "/joinroom" component = {Auth(JoinRoomPage, true)}/>
       </Switch>
     </div>
     <Footer/>
