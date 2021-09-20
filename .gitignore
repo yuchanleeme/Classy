@@ -4,3 +4,4 @@ static/.DS_Store
 .DS_Store
 node_modules
 dev.js
+package-lock.json
