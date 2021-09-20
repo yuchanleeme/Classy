@@ -46,7 +46,7 @@ var upload = multer({
   storage: storage
 });
 
-app.post("/api/users/upload", upload.single("profile_img"), function(req, res, next){
+app.post("/api/users/upload/userimage", upload.single("profile_img"), function(req, res, next){
   res.send({
     filename: res.req.file.path
   })
@@ -71,7 +71,7 @@ app.post('/api/users/register', (req, res) => {
 })
 
 // question upload 하기
-app.post('/api/test/UploadQuestion', (req, res) => {
+app.post('/api/test/upload/question', (req, res) => {
   const Question = new QuestionList(req.body)
   Question.save((err, QuestionInfo) =>{
     if(err) return res.json({success: false, err})
@@ -96,7 +96,7 @@ app.post('/api/test/maketest', (req, res) => {
 })
 
 // ques
-app.post('/api/room/fetchexam', (req, res) => {
+app.post('/api/room/fetch/exam', (req, res) => {
 
   ExamList.findOne({ Exam_id: req.body.Exam_id }, (err, exam) => {
 
@@ -116,7 +116,7 @@ app.post('/api/room/fetchexam', (req, res) => {
 })
 
 // ques
-app.post('/api/room/fetchquestions', (req, res) => {
+app.post('/api/room/fetch/questions', (req, res) => {
   
   QuestionList.findOne({ Question_id: req.body.Question_id }, (err, questions) => {
     if(!questions){

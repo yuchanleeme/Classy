@@ -44,7 +44,7 @@ export function auth(){
 
 export function UploadQuestion(dataToSubmit){
 
-  const request = Axios.post('/api/test/UploadQuestion', dataToSubmit)
+  const request = Axios.post('/api/test/upload/question', dataToSubmit)
     .then(response => response.data)
 
   return{
@@ -66,7 +66,7 @@ export function MakeTest(dataToSubmit){
 
 export function FetchExam(dataToSubmit){
  
-  const request = Axios.post('/api/room/fetchexam', dataToSubmit)
+  const request = Axios.post('/api/room/fetch/exam', dataToSubmit)
     .then(response => response.data)
   console.log(request)
   return{
@@ -77,7 +77,7 @@ export function FetchExam(dataToSubmit){
 
 export function FetchQuestions(dataToSubmit){
  
-  const request = Axios.post('/api/room/fetchquestions', dataToSubmit)
+  const request = Axios.post('/api/room/fetch/questions', dataToSubmit)
     .then(response => response.data)
   return{
     type: FETCH_QUESTIONS,
