@@ -42,4 +42,3 @@
 
 - 현재 heroku, mongoDB 연동 문제로 인해 실제 데모는 작동하지 않는 이슈가 있습니다.
 - [데모영상](https://www.youtube.com/watch?v=8XiyuhnKvyE)
-- [최종보고서](https://drive.google.com/file/d/1jnf1hu_VprCAn7LK_OvjgiBlgpUvHw2y/view)
